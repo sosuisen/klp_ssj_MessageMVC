@@ -8,6 +8,6 @@ import javax.inject.Named;
 
 @Named
 @SessionScoped
-public class Messages extends ArrayList<MessageBean> implements Serializable {
+public class Messages extends ArrayList<MessageDTO> implements Serializable {
 
 }

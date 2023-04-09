@@ -11,7 +11,7 @@ import javax.ws.rs.core.Response;
 
 import org.glassfish.jersey.server.mvc.Viewable;
 
-import com.example.model.MessageBean;
+import com.example.model.MessageDTO;
 import com.example.model.Messages;
 
 @Path("")
@@ -36,7 +36,7 @@ public class MyResources {
 
 	@POST
 	@Path("/list")
-	public Viewable postMessage2(@BeanParam MessageBean mes) {
+	public Viewable postMessage2(@BeanParam MessageDTO mes) {
 		messages.add(mes);
 		return new Viewable("/message.jsp", userName);
 	}
