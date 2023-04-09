@@ -8,6 +8,7 @@
 <title>メッセージの累積</title>
 </head>
 <body>
+	${model}さん、こんにちは！
 	<form action="list" method="POST">
 		投稿者名：<input type="text" name="name"> メッセージ：<input type="text"
 			name="message">
