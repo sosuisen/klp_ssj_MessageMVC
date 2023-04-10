@@ -11,7 +11,7 @@
 	${model}さん、こんにちは！
 	<form action="list" method="POST">
 		投稿者名：<input type="text" name="name"> メッセージ：<input type="text"
-			name="message">
+			name="message">重要<input type="checkbox" name="important" value="true"> 
 		<button>送信</button>
 	</form>
 	<form action="clear" method="GET">
@@ -20,7 +20,7 @@
 	<hr>
 	<h1>メッセージ一覧</h1>
 	<c:forEach var="mes" items="${messages}">
-		<div>${mes.name}:${mes.message}</div>
+		<div style="color:${mes.important ? 'red' : 'black'}">${mes.name}:${mes.message}</div>
 	</c:forEach>
 	<p>
 		<a href="./">ログアウト</a>

@@ -8,5 +8,7 @@ public class MessageDTO {
 	private String message;
 	@FormParam("name")
 	private String name;
+	@FormParam("important")
+	private boolean important;
 }
 
