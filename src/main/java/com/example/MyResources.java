@@ -50,7 +50,7 @@ public class MyResources {
 
 	@POST
 	@Path("list")
-	public Viewable postMessage2(@BeanParam MessageDTO mes) {
+	public Viewable postMessage(@BeanParam MessageDTO mes) {
 		messages.add(mes);
 		return new Viewable("/message", userName);
 	}
