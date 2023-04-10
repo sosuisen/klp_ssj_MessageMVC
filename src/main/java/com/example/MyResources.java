@@ -68,7 +68,7 @@ public class MyResources {
 	public Response clearMessage() {
 		messages.clear();
 		// リダイレクト
-		return Response.temporaryRedirect(URI.create("list")).build();
+		return Response.seeOther(URI.create("list")).build();
 	}
 
 }
