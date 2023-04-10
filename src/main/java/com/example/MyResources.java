@@ -22,17 +22,17 @@ public class MyResources {
 	private String userName = "KCG";
 
 	@GET
-	@Path("/")
+	@Path("")
 	public Viewable home() {
-		return new Viewable("/index.jsp");
+		// index.jsp の拡張子は省略して index と書けます。
+		// JAX-RS に限らず、フレームワークではこの手の省略がよく見られます。
+		return new Viewable("/index");
 	}
 
 	@GET
-	@Path("/list")
+	@Path("list")
 	public Viewable getMessage() {
 		//　引数で渡した値は、JSP側では model という変数で受け取れます。
-		// message.jsp は省略して message と書けます。
-		// JAX-RS に限らず、フレームワークではこの手の省略がよく見られます。
 		return new Viewable("/message", userName);
 	}
 
@@ -40,7 +40,7 @@ public class MyResources {
 	 * @BeanParamを使わない場合
 	 */
 	@POST
-	@Path("/list")
+	@Path("list")
 	public Viewable postMessage(
 			@FormParam("name") String name,
 			@FormParam("message") String message) {
@@ -56,7 +56,7 @@ public class MyResources {
 	 */
 	/*
 	@POST
-	@Path("/list")
+	@Path("list")
 	public Viewable postMessage2(@BeanParam MessageDTO mes) {
 		messages.add(mes);
 		return new Viewable("/message", userName);
@@ -64,7 +64,7 @@ public class MyResources {
 	*/
 
 	@GET
-	@Path("/clear")
+	@Path("clear")
 	public Response clearMessage() {
 		messages.clear();
 		// リダイレクト
