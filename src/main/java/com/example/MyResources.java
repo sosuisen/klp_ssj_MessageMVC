@@ -3,7 +3,7 @@ package com.example;
 import java.net.URI;
 
 import javax.inject.Inject;
-import javax.ws.rs.BeanParam;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -14,7 +14,7 @@ import org.glassfish.jersey.server.mvc.Viewable;
 import com.example.model.MessageDTO;
 import com.example.model.Messages;
 
-@Path("")
+@Path("/")
 public class MyResources {
 	@Inject
 	private Messages messages;
@@ -31,31 +31,35 @@ public class MyResources {
 	@Path("/list")
 	public Viewable getMessage() {
 		//　引数で渡した値は、JSP側では model という変数で受け取れます。
+		// message.jsp は省略して message と書けます。
+		// JAX-RS に限らず、フレームワークではこの手の省略がよく見られます。
+		return new Viewable("/message", userName);
+	}
+
+	/*
+	 * @BeanParamを使わない場合
+	 */
+	@POST
+	@Path("/list")
+	public Viewable postMessage(
+			@FormParam("name") String name,
+			@FormParam("message") String message) {
+		var mes = new MessageDTO();
+		mes.setMessage(message);
+		mes.setName(name);
+		messages.add(mes);
 		return new Viewable("/message.jsp", userName);
 	}
 
 	/**
 	 * @BeanParam を使用する場合
 	 */
+	/*
 	@POST
 	@Path("/list")
 	public Viewable postMessage2(@BeanParam MessageDTO mes) {
 		messages.add(mes);
-		return new Viewable("/message.jsp", userName);
-	}
-
-	/*
-	 * @BeanParamを使わない場合
-	@POST
-	@Path("/list")
-	public Viewable postMessage(
-			@FormParam("name") String name,
-			@FormParam("message") String message) {
-		var mes = new MessageBean();
-		mes.setMessage(message);
-		mes.setName(name);
-		messages.add(mes);
-		return new Viewable("/message.jsp", userName);
+		return new Viewable("/message", userName);
 	}
 	*/
 
