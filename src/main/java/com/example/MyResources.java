@@ -1,18 +1,16 @@
 package com.example;
 
-import java.net.URI;
-
 import javax.inject.Inject;
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.core.Response;
 
 import org.glassfish.jersey.server.mvc.Viewable;
 
 import com.example.model.MessageDTO;
 import com.example.model.Messages;
+import com.example.model.UserDTO;
 
 @Path("/")
 public class MyResources {
@@ -37,8 +35,16 @@ public class MyResources {
 
 	@POST
 	@Path("login")
-	public Response postLogin() {
-		return Response.temporaryRedirect(URI.create("list")).build();
+	public Viewable postLogin(@BeanParam UserDTO user) {
+		if (user.getName().equals("kcg") && user.getPassword().equals("foobar")) {
+			// return Response.temporaryRedirect(URI.create("list")).build();
+			// Response型とViewable型の二つの戻り値を持つことはできないため、
+			// JSTLのリダイレクトタグを用いてリダイレクトさせます。
+			// redirect.jsp 参照。
+			return new Viewable("/redirect", "list");
+		}
+		var error = "ユーザ名またはパスワードが異なります"; 
+		return new Viewable("/login", error);
 	}
 
 	@GET
@@ -57,10 +63,9 @@ public class MyResources {
 
 	@GET
 	@Path("clear")
-	public Response clearMessage() {
+	public Viewable clearMessage() {
 		messages.clear();
-		// リダイレクト
-		return Response.temporaryRedirect(URI.create("list")).build();
+		return new Viewable("/redirect", "list");
 	}
 
 }

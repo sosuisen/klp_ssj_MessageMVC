@@ -12,5 +12,8 @@
 		パスワード<input type="password" name="password">
 		<button>ログイン</button>
 	</form>
+	<p style="color:red">
+	${model}
+	</p>
 </body>
 </html>
