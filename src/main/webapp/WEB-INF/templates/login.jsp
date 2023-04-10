@@ -4,13 +4,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>メッセージの累積</title>
+<title>ログインページ</title>
 </head>
 <body>
 	<form action="login" method="POST">
-		ユーザ名：<input type="text" name="name"><br>
-		パスワード<input type="password" name="password">
+		ユーザ名：<input type="text" name="name"><br> パスワード<input
+			type="password" name="password">
 		<button>ログイン</button>
 	</form>
+	<p>
+		<a href="./">ホームへ戻る</a>
+	</p>
 </body>
 </html>

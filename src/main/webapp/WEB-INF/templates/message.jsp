@@ -22,5 +22,8 @@
 	<c:forEach var="mes" items="${messages}">
 		<div>${mes.name}:${mes.message}</div>
 	</c:forEach>
+	<p>
+		<a href="./">ログアウト</a>
+	</p>
 </body>
 </html>

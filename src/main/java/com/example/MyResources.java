@@ -38,7 +38,7 @@ public class MyResources {
 	@POST
 	@Path("login")
 	public Response postLogin() {
-		return Response.temporaryRedirect(URI.create("list")).build();
+		return Response.seeOther(URI.create("list")).build();
 	}
 
 	@GET
@@ -60,7 +60,7 @@ public class MyResources {
 	public Response clearMessage() {
 		messages.clear();
 		// リダイレクト
-		return Response.temporaryRedirect(URI.create("list")).build();
+		return Response.seeOther(URI.create("list")).build();
 	}
 
 }
