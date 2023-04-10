@@ -3,7 +3,7 @@ package com.example;
 import java.net.URI;
 
 import javax.inject.Inject;
-import javax.ws.rs.FormParam;
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -28,6 +28,18 @@ public class MyResources {
 		// JAX-RS に限らず、フレームワークではこの手の省略がよく見られます。
 		return new Viewable("/index");
 	}
+	
+	@GET
+	@Path("login")
+	public Viewable getLogin() {
+		return new Viewable("/login");		
+	}
+
+	@POST
+	@Path("login")
+	public Response postLogin() {
+		return Response.temporaryRedirect(URI.create("list")).build();
+	}
 
 	@GET
 	@Path("list")
@@ -36,32 +48,12 @@ public class MyResources {
 		return new Viewable("/message", userName);
 	}
 
-	/*
-	 * @BeanParamを使わない場合
-	 */
-	@POST
-	@Path("list")
-	public Viewable postMessage(
-			@FormParam("name") String name,
-			@FormParam("message") String message) {
-		var mes = new MessageDTO();
-		mes.setMessage(message);
-		mes.setName(name);
-		messages.add(mes);
-		return new Viewable("/message", userName);
-	}
-
-	/**
-	 * @BeanParam を使用する場合
-	 */
-	/*
 	@POST
 	@Path("list")
 	public Viewable postMessage2(@BeanParam MessageDTO mes) {
 		messages.add(mes);
 		return new Viewable("/message", userName);
 	}
-	*/
 
 	@GET
 	@Path("clear")

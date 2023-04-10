@@ -11,7 +11,7 @@
 		メッセージアプリへようこそ！
 	</p>
 	<p>
-		<a href="list">利用開始</a>
+		<a href="login">ログイン</a>
 	</p>
 </body>
 </html>

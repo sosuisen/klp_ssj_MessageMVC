@@ -1,18 +1,7 @@
 package com.example.model;
 
-/*
- * @BeanParam を使わない場合
- */
-@lombok.Data
-public class MessageDTO {
-	private String message;
-	private String name;
-}
+import javax.ws.rs.FormParam;
 
-/**
- * @BeanParam を使用する場合
- */
-/*
 @lombok.Data
 public class MessageDTO {
 	@FormParam("message")
@@ -20,4 +9,4 @@ public class MessageDTO {
 	@FormParam("name")
 	private String name;
 }
-*/
+
