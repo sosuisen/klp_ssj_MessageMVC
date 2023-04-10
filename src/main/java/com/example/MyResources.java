@@ -34,6 +34,9 @@ public class MyResources {
 		return new Viewable("/message.jsp", userName);
 	}
 
+	/**
+	 * @BeanParam を使用する場合
+	 */
 	@POST
 	@Path("/list")
 	public Viewable postMessage2(@BeanParam MessageDTO mes) {
