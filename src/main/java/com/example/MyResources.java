@@ -48,7 +48,7 @@ public class MyResources {
 		mes.setMessage(message);
 		mes.setName(name);
 		messages.add(mes);
-		return new Viewable("/message.jsp", userName);
+		return new Viewable("/message", userName);
 	}
 
 	/**
