@@ -22,8 +22,16 @@ public class MyResources {
 	@GET
 	@Path("")
 	public Viewable home() {
-		// index.jsp の拡張子は省略して index と書けます。
-		// JAX-RS に限らず、フレームワークではこの手の省略がよく見られます。
+		/**
+		 * Viewableの第1引数はテンプレート（.jspファイル）名。
+		 * 
+		 * MyApplication.java の
+		 * JspMvcFeature.TEMPLATE_BASE_PATH
+		 * で指定した場所からのパスを書きます。
+		 * 
+		 * index.jsp の拡張子は省略して index と書けます。
+		 * JAX-RS に限らず、フレームワークではこの手の省略がよく見られます。
+		 */
 		return new Viewable("/index");
 	}
 	
@@ -38,22 +46,48 @@ public class MyResources {
 	public Viewable postLogin(@BeanParam UserDTO user) {
 		if (user.getName().equals("kcg") && user.getPassword().equals("foobar")) {
 			// return Response.temporaryRedirect(URI.create("list")).build();
-			// Response型とViewable型の二つの戻り値を持つことはできないため、
-			// JSTLのリダイレクトタグを用いてリダイレクトさせます。
-			// redirect.jsp 参照。
+			/**
+			 * リダイレクトは上のように書きたいところですが、
+			 * postLoginメソッドは、Response型とViewable型という
+			 * 二種類の型の戻り値を持つことはできないため、
+			 * こちらもViewableを使います。
+			 * リダイレクトのために、JSTLのリダイレクトタグを用います。
+			 * redirect.jsp 参照。
+			 */
 			return new Viewable("/redirect", "list");
 		}
 		var error = "ユーザ名またはパスワードが異なります"; 
 		return new Viewable("/login", error);
 	}
 
+	/*
+	 * Viewable を用いたViewの呼び出し
+	 */
 	@GET
 	@Path("list")
 	public Viewable getMessage() {
-		//　引数で渡した値は、JSP側では model という変数で受け取れます。
+		/**
+		 *  Viewableの第1引数はテンプレート（.jspファイル）名。
+		 *  第2引数はテンプレートへ渡すオブジェクト。
+		 *  テンプレート側では model という変数でオブジェクトを受け取れます。
+		 */
 		return new Viewable("/message", userName);
 	}
 
+	/**
+	 * Viewableの代わりに@Templateを用いたViewの呼び出し
+	 * この場合、name = "テンプレート名"
+	 * メソッドの戻り値は、テンプレートに渡すオブジェクトとその型を指定してください。
+	 * 下記では、String型のuserNameオブジェクトをテンプレート（.jspファイル）へ渡します。
+	 */
+	/*
+	@GET
+	@Template(name = "/message")
+	public String getMessage() {
+		return userName;
+	}
+	*/
+	
 	@POST
 	@Path("list")
 	public Viewable postMessage(@BeanParam MessageDTO mes) {
