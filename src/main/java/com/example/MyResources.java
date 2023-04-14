@@ -24,17 +24,46 @@ public class MyResources {
 	@GET
 	@Path("")
 	public Viewable home() {
-		// index.jsp の拡張子は省略して index と書けます。
-		// JAX-RS に限らず、フレームワークではこの手の省略がよく見られます。
+		/**
+		 * Viewableの第1引数はテンプレート（.jspファイル）名。
+		 * 
+		 * MyApplication.java の
+		 * JspMvcFeature.TEMPLATE_BASE_PATH
+		 * で指定した場所からのパスを書きます。
+		 * 
+		 * index.jsp の拡張子は省略して index と書けます。
+		 * JAX-RS に限らず、フレームワークではこの手の省略がよく見られます。
+		 */
 		return new Viewable("/index");
 	}
 
+	/*
+	 * Viewable を用いたViewの呼び出し
+	 */
 	@GET
 	@Path("list")
 	public Viewable getMessage() {
-		//　引数で渡した値は、JSP側では model という変数で受け取れます。
+		/**
+		 *  Viewableの第1引数はテンプレート（.jspファイル）名。
+		 *  第2引数はテンプレートへ渡すオブジェクト。
+		 *  テンプレート側では model という変数でオブジェクトを受け取れます。
+		 */
 		return new Viewable("/message", userName);
 	}
+
+	/**
+	 * Viewableの代わりに@Templateを用いたViewの呼び出し
+	 * この場合、name = "テンプレート名"
+	 * メソッドの戻り値は、テンプレートに渡すオブジェクトとその型を指定してください。
+	 * 下記では、String型のuserNameオブジェクトをテンプレート（.jspファイル）へ渡します。
+	 */
+	/*
+	@GET
+	@Template(name = "/message")
+	public String getMessage() {
+		return userName;
+	}
+	*/
 
 	/*
 	 * @BeanParamを使わない場合
