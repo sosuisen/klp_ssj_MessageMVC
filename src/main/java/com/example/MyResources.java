@@ -100,11 +100,11 @@ public class MyResources {
 		 */
 		return new Viewable("/index");
 	}
-	
+
 	@GET
 	@Path("login")
 	public Viewable getLogin() {
-		return new Viewable("/login");		
+		return new Viewable("/login");
 	}
 
 	@POST
@@ -140,7 +140,7 @@ public class MyResources {
 		return userName;
 	}
 	*/
-	
+
 	@POST
 	@Path("list")
 	public Viewable postMessage(@BeanParam MessageDTO mes) {
