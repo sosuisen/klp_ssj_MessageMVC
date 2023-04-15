@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="../app.css" rel="stylesheet">
 <title>ログインページ</title>
 </head>
 <body>
