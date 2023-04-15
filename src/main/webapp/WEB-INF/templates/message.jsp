@@ -24,7 +24,7 @@
 		<div>${mes.name}:${mes.message}</div>
 	</c:forEach>
 	<p>
-		<a href="./">ログアウト</a>
+		<a href="./login">ログアウト</a>
 	</p>
 </body>
 </html>

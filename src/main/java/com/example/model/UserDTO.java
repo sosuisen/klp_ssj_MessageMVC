@@ -9,4 +9,3 @@ public class UserDTO {
 	@FormParam("password")
 	private String password;
 }
-
