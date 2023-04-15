@@ -15,6 +15,8 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.ext.ExceptionMapper;
+import javax.ws.rs.ext.Provider;
 
 import org.glassfish.jersey.server.mvc.Viewable;
 
@@ -154,4 +156,28 @@ public class MyResources {
 		return Response.seeOther(URI.create("list")).build();
 	}
 
+	/**
+	 * 発展課題用。
+	 * 独自の例外クラス。
+	 * この例外は、指定の redirectTo へのリダイレクトを発生させます。
+	 */
+	@lombok.Getter
+	@lombok.Setter
+	@lombok.AllArgsConstructor
+	public static class RedirectException extends RuntimeException {
+		private String redirectTo;
+	}
+
+	/***
+	 * ExceptionMapper<RedirectException>を実装し、@Providerアノテーションを付けることで、
+	 * Exception Providerを定義します。
+	 * 独自の例外クラスRedirectExceptionを拾って、応答処理をすることができるようになります。
+	 */
+	@Provider
+	public static class RedirectExceptionMapper implements ExceptionMapper<RedirectException> {
+		@Override
+		public Response toResponse(RedirectException exception) {
+			return Response.seeOther(URI.create(exception.redirectTo)).build();
+		}
+	}
 }
