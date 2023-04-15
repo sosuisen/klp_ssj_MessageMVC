@@ -3,13 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>メッセージアプリ</title>
+<meta charset="UTF-8">
+<link href="../app.css" rel="stylesheet">
+<title>メッセージアプリ</title>
 </head>
 <body>
-	<p>
-		メッセージアプリへようこそ！
-	</p>
+	<p>メッセージアプリへようこそ！</p>
 	<p>
 		<a href="login">ログイン</a>
 	</p>

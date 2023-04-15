@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="../app.css" rel="stylesheet">
 <title>ログインページ</title>
 </head>
 <body>
@@ -12,9 +13,7 @@
 			type="password" name="password">
 		<button>ログイン</button>
 	</form>
-	<p style="color:red">
-	${model}
-	</p>
+	<p style="color: red">${model}</p>
 	<p>
 		<a href="./">ホームへ戻る</a>
 	</p>
