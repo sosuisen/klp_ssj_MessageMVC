@@ -22,7 +22,6 @@ import org.glassfish.jersey.server.mvc.Viewable;
 
 import com.example.model.MessageDTO;
 import com.example.model.Messages;
-import com.example.model.User;
 import com.example.model.UserDTO;
 
 @ApplicationScoped
@@ -39,9 +38,6 @@ public class MyResources {
 	 */
 	@Inject
 	private Messages messages;
-
-	@Inject
-	private User user;
 
 	/**
 	 * 上のインスタンスが生成された直後に実行する処理です。
@@ -109,7 +105,6 @@ public class MyResources {
 	@GET
 	@Path("login")
 	public Viewable getLogin() {
-		user.setName("");
 		return new Viewable("/login");
 	}
 
@@ -123,7 +118,6 @@ public class MyResources {
 			 * 戻り値の型がResponseとViewableの2種類になるので無理です。
 			 * 独自の例外を定義してリダイレクトさせます。
 			 */
-			user.setName(userDTO.getName());
 			throw new RedirectException("list");
 		}
 		return new Viewable("/login", "ユーザ名またはパスワードが異なります");
@@ -135,10 +129,6 @@ public class MyResources {
 	@GET
 	@Path("list")
 	public Viewable getMessage() {
-		if (user.getName().equals("")) {
-			// 認証に成功していない場合は、loginへリダイレクト
-			throw new RedirectException("login");
-		}
 		/**
 		 *  Viewableの第1引数はテンプレート（.jspファイル）名。
 		 *  第2引数はテンプレートへ渡すオブジェクト。
