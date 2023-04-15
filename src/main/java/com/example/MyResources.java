@@ -39,7 +39,7 @@ public class MyResources {
 	 */
 	@Inject
 	private Messages messages;
-	
+
 	@Inject
 	private User user;
 
@@ -135,7 +135,7 @@ public class MyResources {
 	@GET
 	@Path("list")
 	public Viewable getMessage() {
-		if(user.getName().equals("")) {
+		if (user.getName().equals("")) {
 			// 認証に成功していない場合は、loginへリダイレクト
 			throw new RedirectException("login");
 		}
@@ -170,9 +170,9 @@ public class MyResources {
 
 	@GET
 	@Path("clear")
-	public Viewable clearMessage() {
+	public Response clearMessage() {
 		messages.clear();
-		return new Viewable("/redirect", "list");
+		return Response.seeOther(URI.create("list")).build();
 	}
 
 	/**
