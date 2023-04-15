@@ -14,7 +14,7 @@
 		であることを確認してください（末尾に/があります。）<br>
 		そうでなければ<a href="http://localhost:8080/MessageMVC/message/">このリンク</a>を開いてください。
 	<p>
-	確認後、<a href="list">「ログイン」</a>
+	確認後、<a href="login">「ログイン」</a>
 	</p>
 </body>
 </html>
