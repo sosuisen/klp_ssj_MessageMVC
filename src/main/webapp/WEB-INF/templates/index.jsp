@@ -10,7 +10,11 @@
 <body>
 	<p>メッセージアプリへようこそ！</p>
 	<p>
-		<a href="list">利用開始</a>
+		このページのURLが <a href="http://localhost:8080/MessageMVC/message/">http://localhost:8080/MessageMVC/message/</a><br>
+		であることを確認してください（末尾に/があります。）<br>
+		そうでなければ<a href="http://localhost:8080/MessageMVC/message/">このリンク</a>を開いてください。
+	<p>
+	確認後、<a href="list">「利用開始」</a>
 	</p>
 </body>
 </html>
