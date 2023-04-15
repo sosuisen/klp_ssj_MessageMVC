@@ -44,7 +44,7 @@ public class MyResources {
 	@POST
 	@Path("login")
 	public Viewable postLogin(@BeanParam UserDTO user) {
-		if (user.getName().equals("kcg") && user.getPassword().equals("foobar")) {
+		if (user.getName().equals("kcg") && user.getPassword().equals("foo")) {
 			// return Response.temporaryRedirect(URI.create("list")).build();
 			/**
 			 * リダイレクトは上のように書きたいところですが、

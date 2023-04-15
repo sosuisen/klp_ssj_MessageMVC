@@ -5,13 +5,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="../app.css" rel="stylesheet">
 <title>メッセージの累積</title>
 </head>
 <body>
 	${model}さん、こんにちは！
 	<form action="list" method="POST">
 		投稿者名：<input type="text" name="name"> メッセージ：<input type="text"
-			name="message">重要<input type="checkbox" name="important" value="true"> 
+			name="message">重要<input type="checkbox" name="important"
+			value="true">
 		<button>送信</button>
 	</form>
 	<form action="clear" method="GET">
