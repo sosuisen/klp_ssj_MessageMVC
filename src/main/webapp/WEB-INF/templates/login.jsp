@@ -9,7 +9,7 @@
 </head>
 <body>
 	<form action="login" method="POST">
-		ユーザ名：<input type="text" name="name"><br> パスワード<input
+		ユーザ名：<input type="text" name="name"><br> パスワード：<input
 			type="password" name="password">
 		<button>ログイン</button>
 	</form>
